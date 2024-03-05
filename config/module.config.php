@@ -20,15 +20,34 @@ $config = array(
     'service_manager' => [
         'allow_override' => true,
         'factories' => [
-            'CaLief\Db\Table\PluginManager' => 'VuFind\ServiceManager\AbstractPluginManagerFactory',
-            'CaLief\Db\Row\PluginManager' => 'VuFind\ServiceManager\AbstractPluginManagerFactory',
+            'Delivery\Db\Row\CaliefAdmin' => 'VuFind\Db\Row\RowGatewayFactory',
+            'Delivery\Db\Row\UserCalief' => 'VuFind\Db\Row\RowGatewayFactory',
+            'Delivery\Db\Row\UserCaliefLog' => 'VuFind\Db\Row\RowGatewayFactory',
+            'Delivery\Db\Table\CaliefAdmin' => 'VuFind\Db\Table\GatewayFactory',
+            'Delivery\Db\Table\UserCalief' => 'VuFind\Db\Table\GatewayFactory',
+            'Delivery\Db\Table\UserCaliefLog' => 'VuFind\Db\Table\GatewayFactory',
         ],
         'aliases' => [
-            'VuFind\Db\Table\PluginManager' => 'CaLief\Db\Table\PluginManager',
-            'VuFind\Db\Row\PluginManager' => 'CaLief\Db\Row\PluginManager',
         ],
     ],
-
+    'db_row' => [
+        'service_manager' => [
+            'aliases' => [
+                'caliefadmin' => 'CaLief\Db\Row\CaliefAdmin',
+                'usercalief' => 'CaLief\Db\Row\UserCalief',
+                'usercalieflog' => 'CaLief\Db\Row\UserCaliefLog',
+            ]
+        ]
+    ],
+    'db_table' => [
+        'service_manager' => [
+            'aliases' => [
+                'caliefadmin' => 'CaLief\Db\Table\CaliefAdmin',
+                'usercalief' => 'CaLief\Db\Table\UserCalief',
+                'usercalieflog' => 'CaLief\Db\Table\UserCaliefLog',
+            ]
+        ]
+    ],
 );
 
 // Define static routes -- Controller/Action strings
